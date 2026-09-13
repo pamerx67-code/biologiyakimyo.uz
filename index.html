@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biologiya va Kimyo | biologiyavakimyo</title>
+<meta name="description" content="8-sinf biologiya va kimyo darslari, loyihalar va ta'lim materiallari.">
+<meta name="keywords" content="biologiya, kimyo, 8-sinf, biologiyavakimyo.uz">
+<style>
+:root{
+--bg-deep:#071b12;
+--bg-mid:#0d2c1c;
+--accent:#4ade80;
+--accent2:#a3e635;
+--accent-soft:rgba(74,222,128,.18);
+--text-soft:#9fd3ab;
+--card:#0b2418;
+--error:#ff8a80;
+}
+*{box-sizing:border-box;}
+body{
+margin:0;
+min-height:100vh;
+font-family:'Segoe UI',Arial,sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:24px;
+background:
+radial-gradient(circle at 18% 20%,rgba(74,222,128,.14),transparent 32%),
+radial-gradient(circle at 82% 78%,rgba(163,230,53,.12),transparent 32%),
+linear-gradient(160deg,var(--bg-deep),var(--bg-mid) 55%,#0a2016);
+position:relative;
+overflow:hidden;
+}
+/* Statik olti burchak (hexagon) naqsh - qimirlamaydi */
+body::before{
+content:"";
+position:absolute;
+inset:0;
+opacity:.5;
+background-image:
+linear-gradient(30deg, rgba(74,222,128,.05) 12%, transparent 12.5%, transparent 87%, rgba(74,222,128,.05) 87.5%, rgba(74,222,128,.05)),
+linear-gradient(150deg, rgba(74,222,128,.05) 12%, transparent 12.5%, transparent 87%, rgba(74,222,128,.05) 87.5%, rgba(74,222,128,.05)),
+linear-gradient(30deg, rgba(74,222,128,.05) 12%, transparent 12.5%, transparent 87%, rgba(74,222,128,.05) 87.5%, rgba(74,222,128,.05)),
+linear-gradient(150deg, rgba(74,222,128,.05) 12%, transparent 12.5%, transparent 87%, rgba(74,222,128,.05) 87.5%, rgba(74,222,128,.05));
+background-size:52px 90px;
+background-position:0 0, 0 0, 26px 45px, 26px 45px;
+}
+.deco{
+position:fixed;
+font-size:56px;
+opacity:.16;
+color:var(--accent);
+user-select:none;
+pointer-events:none;
+}
+.deco.d1{top:8%;left:6%;transform:rotate(-10deg);}
+.deco.d2{bottom:9%;right:7%;font-size:70px;transform:rotate(14deg);}
+.deco.d3{top:62%;left:5%;font-size:34px;}
+
+.container{
+width:100%;
+max-width:380px;
+background:var(--card);
+border:1px solid rgba(74,222,128,.28);
+padding:34px 30px;
+text-align:center;
+z-index:10;
+box-shadow:0 20px 50px rgba(0,0,0,.5);
+clip-path:polygon(18px 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%,0 18px);
+border-radius:10px;
+}
+.logo{
+width:84px;height:84px;
+margin:0 auto 14px;
+display:flex;align-items:center;justify-content:center;
+font-size:44px;
+background:linear-gradient(150deg,#123a24,#081b11);
+border:2px solid var(--accent);
+clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);
+box-shadow:0 0 22px var(--accent-soft);
+animation:bob 3.4s ease-in-out infinite;
+}
+@keyframes bob{
+0%,100%{transform:translateY(0) rotate(0deg);}
+50%{transform:translateY(-7px) rotate(4deg);}
+}
+h1{
+margin:6px 0 4px;
+color:#eafbee;
+font-size:22px;
+font-weight:700;
+}
+.grade-tag{
+display:inline-block;
+margin-bottom:4px;
+padding:3px 12px;
+border-radius:999px;
+background:var(--accent-soft);
+color:var(--accent);
+font-size:12px;
+font-weight:600;
+}
+.subtitle{
+color:var(--text-soft);
+font-size:13.5px;
+margin-bottom:22px;
+line-height:1.5;
+}
+.input-group{position:relative;margin-bottom:12px;}
+input{
+width:100%;
+padding:13px 15px;
+border-radius:10px;
+border:1px solid #1f4a30;
+background:#061b10;
+color:#eafbee;
+font-size:15px;
+outline:none;
+transition:.25s;
+}
+input::placeholder{color:#5c8a68;}
+input:focus{
+border-color:var(--accent);
+box-shadow:0 0 0 3px var(--accent-soft);
+}
+button{
+width:100%;
+padding:13px;
+margin-top:6px;
+border:none;
+border-radius:10px;
+font-size:15.5px;
+font-weight:700;
+color:#062411;
+cursor:pointer;
+background:linear-gradient(135deg,var(--accent),var(--accent2));
+box-shadow:0 8px 20px rgba(74,222,128,.28);
+transition:.25s;
+}
+button:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 26px rgba(74,222,128,.4);
+}
+.error{
+margin-top:14px;
+padding:10px;
+color:var(--error);
+background:rgba(244,67,54,.09);
+border:1px solid rgba(244,67,54,.25);
+border-radius:10px;
+font-size:13.5px;
+}
+.footer{
+margin-top:20px;
+font-size:11.5px;
+color:#4e7a5c;
+}
+.footer b{color:var(--accent);}
+</style>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="autumn-leaves" id="autumn-leaves" aria-hidden="true"></div>
+<div class="deco d1" aria-hidden="true">🌏</div>
+<div class="deco d2" aria-hidden="true">👍</div>
+<div class="deco d3" aria-hidden="true">🥇</div>
+<div class="deco science s1" aria-hidden="true">🧬</div>
+<div class="deco science s2" aria-hidden="true">🔬</div>
+<div class="deco science s3" aria-hidden="true">🧪</div>
+<div class="deco science s4" aria-hidden="true">⚗️</div>
+<div class="deco science s5" aria-hidden="true">🧫</div>
+<div class="deco science s6" aria-hidden="true">🌿</div>
+<div class="deco science s7" aria-hidden="true">🧠</div>
+
+<div class="container">
+<div class="logo">❤️</div>
+<span class="grade-tag" data-i18n="auth.grade">8-SINF</span>
+<span class="season-chip">🍂 <span data-i18n="auth.season">Kuz fasli</span></span>
+<h1 id="auth-title">Biologiya</h1>
+<div class="subtitle" id="auth-subtitle">Kitoblar • Darslar • Milliy Sertifikat</div>
+<form method="POST" id="login-form">
+<div class="input-group">
+<input type="text" name="username" placeholder="Login" autocomplete="username" required data-i18n-placeholder="auth.login">
+</div>
+<div class="input-group">
+<input type="password" name="password" placeholder="Parol" autocomplete="current-password" required data-i18n-placeholder="auth.password">
+</div>
+<button type="submit" data-i18n="auth.enter">Tizimga kirish</button>
+</form>
+<form id="register-form" hidden>
+<div class="input-group">
+<input type="text" name="fullname" placeholder="Ism familiya" autocomplete="name" required data-i18n-placeholder="auth.fullName">
+</div>
+<div class="input-group">
+<input type="text" name="reg-username" placeholder="Yangi login" autocomplete="username" required data-i18n-placeholder="auth.newLogin">
+</div>
+<div class="input-group">
+<input type="password" name="reg-password" placeholder="Parol (kamida 6 belgi)" autocomplete="new-password" required data-i18n-placeholder="auth.passwordMin">
+</div>
+<div class="input-group">
+<input type="password" name="reg-confirm" placeholder="Parolni tasdiqlang" autocomplete="new-password" required data-i18n-placeholder="auth.confirmPassword">
+</div>
+<button type="submit" data-i18n="auth.create">Hisob yaratish</button>
+</form>
+<p class="auth-switch" id="to-register-wrap"><span data-i18n="auth.noAccount">Hisobingiz yo‘qmi?</span> <button type="button" id="show-register" data-i18n="auth.register">Ro‘yxatdan o‘ting</button></p>
+<p class="auth-switch" id="to-login-wrap" hidden><span data-i18n="auth.haveAccount">Allaqachon hisobingiz bormi?</span> <button type="button" id="show-login" data-i18n="auth.loginBtn">Kirish</button></p>
+
+<div class="footer">
+  <b>⚡ biologiyavakimyo.uz</b> · 2026
+  <span class="creator">Sayt yaratuvchisi: Muqimjonov Hasanjon</span>
+</div>
+</div>
+
+<section class="learning-dashboard" id="projects-panel" hidden>
+  <aside class="dashboard-sidebar">
+    <div class="dashboard-brand"><span>🧬</span><strong>Bio<span>Kimyo</span></strong></div>
+    <nav class="dashboard-nav" aria-label="Asosiy menyu">
+      <button type="button" class="nav-link active" data-view="home">⌂ <span data-i18n="nav.home">Bosh sahifa</span></button>
+      <button type="button" class="nav-link" data-view="courses">▣ <span data-i18n="nav.courses">Mening kurslarim</span></button>
+      <button type="button" class="nav-link" data-view="subjects">◈ <span data-i18n="nav.subjects">Fanlar</span></button>
+      <button type="button" class="nav-link" data-view="manuals">📄 <span data-i18n="nav.manuals">Qo‘llanmalar</span></button>
+      <button type="button" class="nav-link" data-view="videos">▶ <span data-i18n="nav.videos">Videolar</span></button>
+      <button type="button" class="nav-link" data-view="achievements">★ <span data-i18n="nav.achievements">Yutuqlar</span></button>
+      <button type="button" class="nav-link" data-view="ranking">🏆 <span data-i18n="nav.ranking">Reyting</span></button>
+      <button type="button" class="nav-link" data-view="settings">⚙ <span data-i18n="nav.settings">Sozlamalar</span></button>
+    </nav>
+    <div class="sidebar-help"><b>Yordam kerakmi?</b><small>Video dars, PDF va reyting bo‘limlaridan foydalaning. Savol bo‘lsa: +998 99 175 4018</small></div>
+    <p class="sidebar-creator"><span data-i18n="common.creator">Sayt yaratuvchisi</span><br><b>Muqimjonov Hasanjon</b></p>
+  </aside>
+  <main class="dashboard-main">
+    <header class="dashboard-topbar">
+      <div class="dashboard-search">
+        ⌕
+        <input id="dashboard-search" type="search" placeholder="Kurs yoki mavzu qidiring..." aria-label="Qidirish">
+      </div>
+      <div class="dashboard-user">
+        <button type="button" class="notification" id="notification-button" aria-label="Bildirishnomalar">🔔<i></i></button>
+        <div class="avatar" id="user-avatar">B</div>
+        <div class="user-meta">
+          <strong id="user-name">Biolog</strong>
+          <small id="user-rank">Reyting: Yangi</small>
+        </div>
+        <button class="logout-button" id="logout-button" type="button" data-i18n="top.logout">Chiqish</button>
+      </div>
+    </header>
+    <div class="notification-panel" id="notification-panel" hidden></div>
+
+    <section class="dash-view" id="view-home">
+      <section class="site-banner" id="site-banner" hidden>
+        <span>📢</span>
+        <div>
+          <b id="site-banner-title"></b>
+          <p id="site-banner-text"></p>
+        </div>
+      </section>
+      <section class="welcome-banner">
+        <div>
+          <span class="eyebrow" data-i18n="home.today">BUGUNGI MAQSAD</span>
+          <h1 id="welcome-title">Salom, Biolog! 👋</h1>
+          <p id="welcome-text">Biologiya va kimyo video darslarini 0 dan boshlang. Oxirigacha ko‘rsangiz ball oshadi.</p>
+          <button class="primary-action" id="continue-lesson" type="button"><span data-i18n="home.openLesson">Video darsni ochish</span> <span>→</span></button>
+        </div>
+                  <div class="banner-illustration">🍂<span>✦</span></div>
+      </section>
+      <section class="dashboard-section">
+        <div class="section-heading">
+          <div><h2 data-i18n="home.continue">O‘qishni davom ettiring</h2><p data-i18n="home.continueSub">Biologiya video dars va kimyo video dars</p></div>
+          <button type="button" class="text-link" data-view="courses" data-i18n="common.seeAll">Barchasini ko‘rish →</button>
+        </div>
+        <div class="course-grid" id="home-courses"></div>
+      </section>
+      <section class="dashboard-section">
+        <div class="section-heading"><div><h2 data-i18n="home.bySubject">Fanlar bo‘yicha o‘rganing</h2><p data-i18n="home.bySubjectSub">Biologiya va kimyo</p></div></div>
+        <div class="subject-grid" id="home-subjects"></div>
+      </section>
+      <section class="dashboard-section" id="home-manuals-wrap" hidden>
+        <div class="section-heading">
+          <div><h2 data-i18n="home.pdfs">PDF qo‘llanmalar</h2><p data-i18n="home.pdfsSub">Admin joylagan darsliklar</p></div>
+          <button type="button" class="text-link" data-view="manuals" data-i18n="common.seeAll">Barchasini ko‘rish →</button>
+        </div>
+        <div class="manuals-home" id="home-manuals"></div>
+      </section>
+      <section class="dashboard-section" id="home-videos-wrap" hidden>
+        <div class="section-heading">
+          <div><h2 data-i18n="home.videos">Video darslar</h2><p data-i18n="home.videosSub">Admin joylagan videolar</p></div>
+          <button type="button" class="text-link" data-view="videos" data-i18n="common.seeAll">Barchasini ko‘rish →</button>
+        </div>
+        <div class="video-grid" id="home-videos"></div>
+      </section>
+      <section class="stats-row" id="home-stats">
+        <div><strong id="stat-streak">🔥 0 kun</strong><span data-i18n="stats.streak">Ketma-ket o‘qish</span></div>
+        <div><strong id="stat-points">⭐ 0</strong><span data-i18n="stats.points">To‘plangan ball</span></div>
+        <div><strong id="stat-badges">🏆 0</strong><span data-i18n="stats.badges">Yutuqlar</span></div>
+        <div><strong id="stat-rank">🎯 Yangi</strong><span data-i18n="stats.rank">Reyting darajasi</span></div>
+        <div><strong id="stat-place">🏅 —</strong><span data-i18n="stats.place">Reyting o‘rni</span></div>
+      </section>
+      <section class="dashboard-section">
+        <div class="section-heading">
+          <div><h2 data-i18n="home.topPoints">Eng yuqori ball</h2><p data-i18n="home.topPointsSub">O‘quvchilar reytingi — admin 1-o‘rin olmaydi</p></div>
+          <button type="button" class="text-link" data-view="ranking" data-i18n="common.seeAll">Barchasini ko‘rish →</button>
+        </div>
+        <div class="rank-list compact" id="home-ranking"></div>
+      </section>
+    </section>
+
+    <section class="dash-view" id="view-courses" hidden>
+      <div class="section-heading"><div><h2 data-i18n="nav.courses">Mening kurslarim</h2><p data-i18n="courses.sub">Biologiya video dars va kimyo video dars — admin joylagan videolar shu yerda</p></div></div>
+      <div class="library-grid" id="all-courses"></div>
+    </section>
+
+    <section class="dash-view" id="view-subjects" hidden>
+      <div class="section-heading"><div><h2 data-i18n="nav.subjects">Fanlar</h2><p data-i18n="subjects.sub">Har bir fan — o‘z video darslari bilan alohida</p></div></div>
+      <div class="subject-grid" id="all-subjects"></div>
+      <div class="manuals-split subject-videos-split">
+        <section class="manuals-column biology">
+          <h3 data-i18n="videos.bio">🧬 Biologiya video darslari</h3>
+          <div class="video-grid" id="biology-subject-videos"></div>
+        </section>
+        <section class="manuals-column chemistry">
+          <h3 data-i18n="videos.chem">🧪 Kimyo video darslari</h3>
+          <div class="video-grid" id="chemistry-subject-videos"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="dash-view" id="view-manuals" hidden>
+      <div class="section-heading"><div><h2 data-i18n="nav.manuals">PDF qo‘llanmalar</h2><p data-i18n="manuals.sub">Biologiya va kimyo alohida — “O‘qish”ni bosing, onlayn ochiladi</p></div></div>
+      <div class="manuals-split">
+        <section class="manuals-column biology">
+          <h3 data-i18n="manuals.bio">🧬 Biologiya qo‘llanmalari</h3>
+          <div class="manual-list" id="biology-manuals"></div>
+        </section>
+        <section class="manuals-column chemistry">
+          <h3 data-i18n="manuals.chem">🧪 Kimyo qo‘llanmalari</h3>
+          <div class="manual-list" id="chemistry-manuals"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="dash-view" id="view-videos" hidden>
+      <div class="section-heading"><div><h2 data-i18n="nav.videos">Video darslar</h2><p data-i18n="videos.sub">Biologiya va kimyo videolari alohida — oxirigacha ko‘rsangiz ball oshadi</p></div></div>
+      <div class="manuals-split">
+        <section class="manuals-column biology">
+          <h3 data-i18n="videos.bio">🧬 Biologiya video darslari</h3>
+          <div class="video-grid" id="biology-videos"></div>
+        </section>
+        <section class="manuals-column chemistry">
+          <h3 data-i18n="videos.chem">🧪 Kimyo video darslari</h3>
+          <div class="video-grid" id="chemistry-videos"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="dash-view" id="view-achievements" hidden>
+      <div class="section-heading"><div><h2 data-i18n="ach.title">Yutuqlaringiz</h2><p data-i18n="ach.sub">O‘qishdagi natijalaringiz</p></div></div>
+      <section class="stats-row" id="achieve-stats">
+        <div><strong id="ach-streak">🔥 0 kun</strong><span data-i18n="stats.streak">Ketma-ket o‘qish</span></div>
+        <div><strong id="ach-points">⭐ 0</strong><span data-i18n="stats.points">To‘plangan ball</span></div>
+        <div><strong id="ach-badges">🏆 0</strong><span data-i18n="stats.badges">Yutuqlar</span></div>
+        <div><strong id="ach-rank">🎯 Yangi</strong><span data-i18n="stats.rank">Reyting darajasi</span></div>
+        <div><strong id="ach-place">🏅 —</strong><span data-i18n="stats.place">Reyting o‘rni</span></div>
+      </section>
+      <div class="badge-grid" id="badge-grid"></div>
+    </section>
+
+    <section class="dash-view" id="view-ranking" hidden>
+      <div class="section-heading">
+        <div>
+          <h2 data-i18n="rank.title">O‘quvchilar reytingi</h2>
+          <p data-i18n="rank.sub">Eng ko‘p ball to‘plagan o‘quvchilar. Owner balli cheksiz, lekin 1-o‘rin olmaydi</p>
+        </div>
+      </div>
+      <article class="owner-rank-card" id="owner-rank-card">
+        <b>👑</b>
+        <div>
+          <h3 data-i18n="rank.owner">Owner / Admin</h3>
+          <p data-i18n="rank.ownerText">Balli cheksiz · reytingda ishtirok etmaydi · 1-o‘rin o‘quvchilarga tegishli</p>
+        </div>
+        <strong data-i18n="rank.infPoints">∞ ball</strong>
+      </article>
+      <div class="your-rank-banner" id="your-rank-banner">
+        <b>🏅</b>
+        <div>
+          <h3 id="your-rank-title">Sizning o‘rningiz</h3>
+          <p id="your-rank-text">Ball to‘plang va 1-o‘ringa chiqing</p>
+        </div>
+        <strong id="your-rank-place">—</strong>
+      </div>
+      <div class="rank-podium" id="rank-podium"></div>
+      <div class="rank-list" id="rank-list"></div>
+    </section>
+
+    <section class="dash-view" id="view-settings" hidden>
+      <div class="section-heading"><div><h2>Sozlamalar</h2><p>Profil rasmi, ism va parolni shu yerdan o‘zgartirasiz</p></div></div>
+      <div class="settings-grid">
+        <article class="settings-card settings-profile">
+          <div class="avatar-block">
+            <div class="avatar" id="settings-avatar">B</div>
+            <div class="avatar-actions">
+              <label class="avatar-pick" for="settings-avatar-file" data-i18n="settings.photo">Rasm qo‘yish</label>
+              <input id="settings-avatar-file" type="file" accept="image/*" hidden>
+              <button type="button" class="avatar-remove" id="settings-avatar-remove" hidden data-i18n="settings.removePhoto">Olib tashlash</button>
+            </div>
+          </div>
+          <div>
+            <h3 id="settings-name">Biolog</h3>
+            <p id="settings-login">@biolog</p>
+            <small id="settings-rank">Reyting: Yangi</small>
+            <div class="form-message" id="settings-avatar-message" hidden></div>
+          </div>
+        </article>
+        <form class="settings-card" id="settings-profile-form">
+          <h2 data-i18n="settings.changeName">Ismni o‘zgartirish</h2>
+          <p data-i18n="settings.changeNameSub">Bu ism bosh sahifa va reytingda ko‘rinadi</p>
+          <label><span data-i18n="auth.fullName">Ism familiya</span><input name="settings-name" type="text" required placeholder="Ism familiya" autocomplete="name" data-i18n-placeholder="auth.fullName"></label>
+          <button type="submit" data-i18n="settings.saveName">Ismni saqlash</button>
+          <div class="form-message" id="settings-profile-message" hidden></div>
+        </form>
+        <form class="settings-card" id="settings-password-form">
+          <h2 data-i18n="settings.changePass">Parolni o‘zgartirish</h2>
+          <p data-i18n="settings.changePassSub">Yangi parol saqlangach, keyingi safar shu parol bilan kirasiz</p>
+          <label><span data-i18n="settings.currentPass">Joriy parol</span>
+            <div class="input-group">
+              <input name="settings-current" type="password" required placeholder="Joriy parol" autocomplete="current-password" data-i18n-placeholder="settings.currentPass">
+            </div>
+          </label>
+          <label><span data-i18n="settings.newPass">Yangi parol</span>
+            <div class="input-group">
+              <input name="settings-new" type="password" required placeholder="Kamida 6 belgi" autocomplete="new-password" data-i18n-placeholder="auth.passwordMin">
+            </div>
+          </label>
+          <label><span data-i18n="settings.confirmNew">Yangi parolni tasdiqlang</span>
+            <div class="input-group">
+              <input name="settings-confirm" type="password" required placeholder="Qayta yozing" autocomplete="new-password" data-i18n-placeholder="settings.again">
+            </div>
+          </label>
+          <button type="submit" data-i18n="settings.changePass">Parolni o‘zgartirish</button>
+          <div class="form-message" id="settings-password-message" hidden></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="dash-view" id="view-course-videos" hidden>
+      <button type="button" class="back-link" id="back-from-course-videos" data-i18n="courses.back">← Kurslarga qaytish</button>
+      <div class="section-heading">
+        <div>
+          <h2 id="course-videos-title">Biologiya video dars</h2>
+          <p id="course-videos-text">Admin joylagan videolar — oxirigacha ko‘rsangiz +80 ball</p>
+        </div>
+      </div>
+      <div class="video-grid" id="course-videos"></div>
+    </section>
+
+    <section class="dash-view" id="view-lesson" hidden>
+      <button type="button" class="back-link" id="back-from-lesson" data-i18n="courses.back">← Kurslarga qaytish</button>
+      <article class="lesson-layout">
+        <aside class="lesson-units" id="lesson-units"></aside>
+        <div class="lesson-content">
+          <span class="project-tag" id="lesson-tag"></span>
+          <h2 id="lesson-title"></h2>
+          <p id="lesson-text"></p>
+          <ul id="lesson-facts"></ul>
+          <div class="lesson-quiz" id="lesson-quiz" hidden></div>
+          <button type="button" class="primary-action" id="complete-unit" data-i18n="lesson.complete">Darsni tugatish</button>
+        </div>
+      </article>
+    </section>
+  </main>
+</section>
+
+<section class="admin-panel" id="admin-panel" hidden>
+  <aside class="admin-sidebar">
+    <div class="admin-brand"><span>👑</span><strong>Owner <small>panel</small></strong></div>
+    <nav class="admin-nav" aria-label="Admin menyu">
+      <button type="button" class="admin-link active" data-admin-view="overview">⌂ <span>Boshqaruv</span></button>
+      <button type="button" class="admin-link" data-admin-view="users">👤 <span>Foydalanuvchilar</span></button>
+      <button type="button" class="admin-link" data-admin-view="videos">▶ <span>Videolar</span></button>
+      <button type="button" class="admin-link" data-admin-view="manuals">📄 <span>Qo‘llanmalar</span></button>
+      <button type="button" class="admin-link" data-admin-view="ranking">🏆 <span>Reyting</span></button>
+      <button type="button" class="admin-link" data-admin-view="news">📢 <span>Xabarlar</span></button>
+      <button type="button" class="admin-link" data-admin-view="analytics">📊 <span>Analitika</span></button>
+      <button type="button" class="admin-link" data-admin-view="tools">🧰 <span>Vositalar</span></button>
+      <button type="button" class="admin-link" data-admin-view="settings">⚙ <span>Sozlamalar</span></button>
+    </nav>
+    <p class="admin-creator">Sayt yaratuvchisi<br><b>Muqimjonov Hasanjon</b></p>
+    <div class="admin-sidebar-actions">
+      <button type="button" id="admin-open-site" data-i18n="admin.openSite">🌐 O‘quv sahifasi</button>
+      <button type="button" id="admin-logout" data-i18n="top.logout">Chiqish</button>
+    </div>
+  </aside>
+  <main class="admin-main">
+    <header class="admin-topbar">
+      <div>
+        <span class="admin-eyebrow">BIOKIMYO OWNER</span>
+        <h1 id="admin-heading">Boshqaruv paneli</h1>
+      </div>
+      <div class="admin-user-chip"><b id="admin-chip-avatar">A</b><span>admin</span><i>OWNER</i></div>
+    </header>
+
+    <section class="admin-view" id="admin-view-overview">
+      <div class="admin-stats">
+        <article><small>O‘quvchilar</small><strong id="stat-students">0</strong><span>Ro‘yxatdan o‘tgan odamlar</span></article>
+        <article><small>Jami hisoblar</small><strong id="stat-accounts">0</strong><span>Admin bilan birga</span></article>
+        <article><small>Videolar</small><strong id="stat-videos">0</strong><span>Joylangan darslar</span></article>
+        <article><small>Kurslar</small><strong id="stat-courses">2</strong><span>Biologiya va kimyo video dars</span></article>
+        <article><small>PDF</small><strong id="stat-manuals">0</strong><span>Joylangan qo‘llanmalar</span></article>
+        <article><small>Jami ball</small><strong id="stat-points-all">0</strong><span>O‘quvchilar to‘plagan</span></article>
+        <article><small>Ko‘rilgan video</small><strong id="stat-watched">0</strong><span>Oxirigacha tomosha</span></article>
+        <article><small>Bugun faol</small><strong id="stat-active-today">0</strong><span>Bugun dars qilganlar</span></article>
+        <article><small>O‘rtacha ball</small><strong id="stat-avg-points">0</strong><span>Har o‘quvchi uchun</span></article>
+        <article><small>Yetakchi</small><strong id="stat-leader">—</strong><span>Eng ko‘p ball</span></article>
+      </div>
+      <div class="admin-overview-grid">
+        <section>
+          <h2>So‘nggi foydalanuvchilar</h2>
+          <div id="admin-recent-users" class="admin-mini-list"></div>
+        </section>
+        <section>
+          <h2>So‘nggi videolar</h2>
+          <div id="admin-recent-videos" class="admin-mini-list"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="admin-view" id="admin-view-users" hidden>
+      <div class="admin-split">
+        <div>
+          <div class="section-heading"><div><h2>Odamlar ro‘yxati</h2><p>Kim ro‘yxatdan o‘tganini shu yerda ko‘rasiz</p></div></div>
+          <div class="admin-toolbar">
+            <input id="admin-user-search" type="search" placeholder="Ism yoki login qidiring...">
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr><th>Ism</th><th>Login</th><th>Holat</th><th>Ball</th><th>Seriya</th><th>Kirgan</th><th></th></tr>
+              </thead>
+              <tbody id="admin-users-body"></tbody>
+            </table>
+          </div>
+        </div>
+        <form class="admin-card-form" id="admin-add-user">
+          <h2>Yangi o‘quvchi</h2>
+          <p>Kod yozmasdan hisob yarating</p>
+          <label>Ism familiya<input name="admin-name" type="text" required placeholder="Ali Valiyev"></label>
+          <label>Login<input name="admin-username" type="text" required placeholder="ali08"></label>
+          <label>Parol<input name="admin-password" type="text" required placeholder="kamida 6 belgi"></label>
+          <button type="submit">Hisob qo‘shish</button>
+          <div class="form-message" id="admin-user-message" hidden></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="admin-view" id="admin-view-videos" hidden>
+      <div class="admin-split">
+        <div>
+          <div class="section-heading"><div><h2>Joylangan videolar</h2><p>O‘quvchilar shu videolarni ko‘radi</p></div></div>
+          <div class="admin-video-list" id="admin-video-list"></div>
+        </div>
+        <form class="admin-card-form" id="admin-add-video">
+          <h2>Video joylash</h2>
+          <p>Kompyuterdan video tanlang — kod yozish shart emas</p>
+          <label>Video nomi<input name="video-title" type="text" required placeholder="Fotosintez darsligi"></label>
+          <label>Fan
+            <select name="video-subject" required>
+              <option value="biologiya">Biologiya</option>
+              <option value="kimyo">Kimyo</option>
+            </select>
+          </label>
+          <label>Video fayl
+            <input name="video-file" type="file" accept="video/*" required>
+          </label>
+          <button type="submit">Videoni joylash</button>
+          <div class="form-message" id="admin-video-message" hidden></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="admin-view" id="admin-view-manuals" hidden>
+      <div class="admin-split">
+        <div>
+          <div class="section-heading"><div><h2>Joylangan PDF qo‘llanmalar</h2><p>Biologiya va kimyo alohida ko‘rinadi</p></div></div>
+          <div class="admin-manuals-cols">
+            <section>
+              <h3>🧬 Biologiya</h3>
+              <div class="admin-video-list" id="admin-bio-manuals"></div>
+            </section>
+            <section>
+              <h3>🧪 Kimyo</h3>
+              <div class="admin-video-list" id="admin-chem-manuals"></div>
+            </section>
+          </div>
+        </div>
+        <form class="admin-card-form" id="admin-add-manual">
+          <h2>PDF joylash</h2>
+          <p>Kompyuterdan qo‘llanma tanlang — kod yozish shart emas</p>
+          <label>Qo‘llanma nomi<input name="manual-title" type="text" required placeholder="8-sinf biologiya darsligi"></label>
+          <label>Fan
+            <select name="manual-subject" required>
+              <option value="biologiya">Biologiya</option>
+              <option value="kimyo">Kimyo</option>
+            </select>
+          </label>
+          <label>PDF fayl
+            <input name="manual-file" type="file" accept="application/pdf,.pdf" required>
+          </label>
+          <button type="submit">PDF ni joylash</button>
+          <div class="form-message" id="admin-manual-message" hidden></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="admin-view" id="admin-view-analytics" hidden>
+      <div class="admin-stats">
+        <article><small>Faol bugun</small><strong id="an-active">0</strong><span>Darsga kirganlar</span></article>
+        <article><small>O‘rtacha ball</small><strong id="an-avg">0</strong><span>Barcha o‘quvchilar</span></article>
+        <article><small>Kursni tugatgan</small><strong id="an-complete">0</strong><span>Kamida 1 ta kurs 100%</span></article>
+        <article><small>Bloklangan</small><strong id="an-blocked">0</strong><span>Kirishi yopilgan</span></article>
+      </div>
+      <div class="admin-overview-grid">
+        <section>
+          <h2>Video kurslar bo‘yicha o‘zlashtirish</h2>
+          <div id="analytics-courses" class="analytics-bars"></div>
+        </section>
+        <section>
+          <h2>Reyting taqsimoti</h2>
+          <div id="analytics-ranks" class="analytics-bars"></div>
+        </section>
+      </div>
+      <div class="admin-overview-grid">
+        <section>
+          <h2>Fanlar va materiallar</h2>
+          <div id="analytics-subjects" class="analytics-bars"></div>
+        </section>
+        <section>
+          <h2>Eng faol 5 o‘quvchi</h2>
+          <div id="analytics-top" class="admin-mini-list"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="admin-view" id="admin-view-tools" hidden>
+      <div class="admin-tools-grid">
+        <form class="admin-card-form" id="admin-bonus-form">
+          <h2>Bonus ball</h2>
+          <p>Bitta o‘quvchiga ball qo‘shing — reyting darhol oshadi</p>
+          <label>O‘quvchi
+            <select name="bonus-user" required></select>
+          </label>
+          <label>Ball
+            <input name="bonus-points" type="number" min="1" max="5000" value="50" required>
+          </label>
+          <label>Sabab
+            <input name="bonus-reason" type="text" placeholder="Faol ishtirok, olimpiada...">
+          </label>
+          <button type="submit">Ball berish</button>
+          <div class="form-message" id="admin-bonus-message" hidden></div>
+        </form>
+        <form class="admin-card-form" id="admin-broadcast-form">
+          <h2>Hammaga ball</h2>
+          <p>Barcha o‘quvchilarga bir xil bonus yuboring</p>
+          <label>Ball
+            <input name="broadcast-points" type="number" min="1" max="1000" value="20" required>
+          </label>
+          <label>Sabab
+            <input name="broadcast-reason" type="text" placeholder="Bayram bonusi">
+          </label>
+          <button type="submit">Hammaga yuborish</button>
+          <div class="form-message" id="admin-broadcast-message" hidden></div>
+        </form>
+        <form class="admin-card-form" id="admin-banner-form">
+          <h2>Bosh sahifa xabari</h2>
+          <p>O‘quvchilar bosh sahifasida ko‘rinadigan e’lon</p>
+          <label>Sarlavha<input name="banner-title" type="text" required placeholder="Yangi dars chiqdi"></label>
+          <label>Matn<textarea name="banner-text" placeholder="Fotosintez videosi joylandi."></textarea></label>
+          <button type="submit">Xabarni chiqarish</button>
+          <button type="button" class="admin-delete" id="admin-banner-clear">Xabarni olib tashlash</button>
+          <div class="form-message" id="admin-banner-message" hidden></div>
+        </form>
+        <section class="admin-card-form">
+          <h2>Yuklab olish va zaxira</h2>
+          <p>Ro‘yxat, reyting yoki to‘liq zaxira. Video/PDF fayllari shu brauzerda qoladi.</p>
+          <div class="admin-tool-actions">
+            <button type="button" class="admin-mini" id="admin-export-users">O‘quvchilar CSV</button>
+            <button type="button" class="admin-mini" id="admin-export-ranking">Reyting CSV</button>
+            <button type="button" class="admin-mini" id="admin-export-backup">Zaxira JSON</button>
+          </div>
+          <label>Zaxirani tiklash
+            <input id="admin-import-backup" type="file" accept="application/json,.json">
+          </label>
+          <div class="form-message" id="admin-backup-message" hidden></div>
+        </section>
+        <section class="admin-card-form admin-log-card">
+          <h2>Faoliyat jurnali</h2>
+          <p>Owner qilgan so‘nggi amallar</p>
+          <div id="admin-activity-log" class="admin-mini-list"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="admin-view" id="admin-view-ranking" hidden>
+      <div class="section-heading"><div><h2>O‘quvchilar reytingi</h2><p>Ball, seriya va yutuqlar bo‘yicha</p></div></div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr><th>#</th><th>Ism</th><th>Login</th><th>Ball</th><th>Daraja</th><th>Seriya</th><th>Yutuq</th><th>Video</th></tr>
+          </thead>
+          <tbody id="admin-ranking-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="admin-view" id="admin-view-news" hidden>
+      <div class="admin-split">
+        <div>
+          <div class="section-heading"><div><h2>Joylangan xabarlar</h2><p>O‘quvchilar bildirishnomada ko‘radi</p></div></div>
+          <div class="admin-video-list" id="admin-news-list"></div>
+        </div>
+        <form class="admin-card-form" id="admin-add-news">
+          <h2>Xabar yuborish</h2>
+          <p>Yangi dars, e’lon yoki eslatma yozing</p>
+          <label>Sarlavha<input name="news-title" type="text" required placeholder="Yangi biologiya videosi"></label>
+          <label>Matn<textarea name="news-text" required placeholder="Bugun fotosintez videosi joylandi."></textarea></label>
+          <button type="submit">Xabarni chiqarish</button>
+          <div class="form-message" id="admin-news-message" hidden></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="admin-view" id="admin-view-settings" hidden>
+      <div class="admin-split">
+        <section class="admin-card-form admin-avatar-card">
+          <h2>Profil rasmi</h2>
+          <p>Owner panelida ham o‘z rasmingizni qo‘yishingiz mumkin.</p>
+          <div class="settings-profile admin-settings-profile">
+            <div class="avatar-block">
+              <div class="avatar" id="admin-settings-avatar">A</div>
+              <div class="avatar-actions">
+                <label class="avatar-pick" for="admin-avatar-file">Rasm qo‘yish</label>
+                <input id="admin-avatar-file" type="file" accept="image/*" hidden>
+                <button type="button" class="avatar-remove" id="admin-avatar-remove" hidden>Olib tashlash</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-message" id="admin-avatar-message" hidden></div>
+        </section>
+        <form class="admin-card-form" id="admin-password-form">
+          <h2>Parolni o‘zgartirish</h2>
+          <p>Owner parolini shu yerdan bemalol yangilaysiz. Tiklash yo‘q.</p>
+          <label>Joriy parol
+            <div class="input-group">
+              <input name="admin-current" type="password" required placeholder="Joriy parol" autocomplete="current-password">
+            </div>
+          </label>
+          <label>Yangi parol
+            <div class="input-group">
+              <input name="admin-new" type="password" required placeholder="Kamida 6 belgi" autocomplete="new-password">
+            </div>
+          </label>
+          <label>Yangi parolni tasdiqlang
+            <div class="input-group">
+              <input name="admin-confirm" type="password" required placeholder="Qayta yozing" autocomplete="new-password">
+            </div>
+          </label>
+          <button type="submit">Parolni saqlash</button>
+          <div class="form-message" id="admin-password-message" hidden></div>
+        </form>
+        <section class="admin-card-form">
+          <h2>Hisob ma’lumoti</h2>
+          <p>Login o‘zgarmaydi. Parolni istalgancha o‘zgartirish mumkin.</p>
+          <p><b>Login:</b> admin</p>
+          <p>O‘quvchilar parolini o‘zlari <b>Sozlamalar</b> bo‘limidan o‘zgartiradi.</p>
+        </section>
+      </div>
+    </section>
+  </main>
+</section>
+<button class="admin-return" id="admin-return" type="button" hidden>👑 Admin panel</button>
+
+<div class="pdf-modal" id="student-modal" hidden>
+  <div class="modal-backdrop" data-close-student></div>
+  <article class="pdf-modal-content student-modal-content" role="dialog" aria-modal="true" aria-labelledby="student-modal-title">
+    <header class="pdf-modal-bar">
+      <h2 id="student-modal-title">O‘quvchi</h2>
+      <button class="modal-close" id="student-modal-close" type="button" aria-label="Oynani yopish">×</button>
+    </header>
+    <div class="student-modal-body" id="student-modal-body"></div>
+  </article>
+</div>
+
+<div class="pdf-modal" id="pdf-modal" hidden>
+  <div class="modal-backdrop" data-close-pdf></div>
+  <article class="pdf-modal-content" role="dialog" aria-modal="true" aria-labelledby="pdf-modal-title">
+    <header class="pdf-modal-bar">
+      <h2 id="pdf-modal-title">Qo‘llanma</h2>
+      <a class="pdf-download" id="pdf-download" download data-i18n="manuals.download">Yuklab olish</a>
+      <button class="modal-close" id="pdf-close" type="button" aria-label="Oynani yopish">×</button>
+    </header>
+    <iframe id="pdf-frame" title="PDF qo‘llanma"></iframe>
+  </article>
+</div>
+
+<div class="project-modal" id="project-modal" hidden>
+  <div class="modal-backdrop" data-close-modal></div>
+  <article class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-close" id="modal-close" type="button" aria-label="Oynani yopish">×</button>
+    <img class="modal-image" id="modal-image" src="" alt="">
+    <div class="modal-body">
+      <span class="project-tag" id="modal-tag"></span>
+      <h2 id="modal-title"></h2>
+      <p id="modal-description"></p>
+      <h3>🔎 Qiziqarli ma’lumotlar</h3>
+      <ul id="modal-facts"></ul>
+      <div class="modal-tip" id="modal-tip"></div>
+    </div>
+  </article>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
