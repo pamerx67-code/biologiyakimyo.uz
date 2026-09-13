@@ -1,0 +1,1 @@
+# biologiyakimyo.uz
